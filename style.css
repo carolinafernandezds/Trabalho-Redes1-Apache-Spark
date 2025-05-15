@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  /* header {
+    font-size: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(11, 67, 221);
+    color: white;
+    padding: 10px 20px;
+    z-index: 1000;
+  } */
+  /* ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0.5em 10em;
+  } */
+  
+  #demo-container {
+    padding: 25px 15px 0 15px;
+    background: #E4682A;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  ul#simple-menu {
+    list-style-type: none;
+    width: 100%;
+    position: relative;
+    height: 27px;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 11px 0 0 0;
+  }
+  
+  ul#simple-menu li {
+    display: block;
+    float: left;
+    margin: 0 0 0 4px;
+    height: 27px;
+  }
+  
+  ul#simple-menu li.left {
+    margin: 0;
+  }
+  
+  ul#simple-menu li a {
+    display: block;
+    float: left;
+    color: #fff;
+    background: #a94512;
+    line-height: 27px;
+    text-decoration: none;
+    padding: 0 17px 0 18px;
+    height: 27px;
+  }
+  
+  ul#simple-menu li a.right {
+    padding-right: 19px;
+  }
+  
+  ul#simple-menu li a:hover {
+    background: #7f2e05;
+  }
+  
+  ul#simple-menu li a.current {
+    color: #7f2e05;
+    background: #fff;
+  }
+  
+  ul#simple-menu li a.current:hover {
+    color: #7f2e05;
+    background: #fff;
+  }
+  
+  .indice {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0;
+    list-style: upper-roman;
+  }
+  main {
+    margin-top: 100px; /* ajusta a altura da header */
+    padding: 0px 5%;
+    margin-bottom: 40px;
+  }
+  h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  p {
+    line-height: 1.5;
+  }
+  ol {
+    list-style-type: decimal;
+    margin-left: 2em;
+  }
+  footer {
+    background-color: #E4682A;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+  }
+  a,
+  a:active,
+  a:visited {
+    text-decoration: none;
+    color: #a94512;
+  }
+  .textref {
+    color: black; /* MANTER VERMELHO PARA CONFIGURAÇÃO DE REFERÊNCIAS */
+  }
+  
+  .section {
+    display: none; /* Hide all sections by default */
+  }
+  
+  .section.active {
+    display: block; /* Show the active section */
+  }
+  

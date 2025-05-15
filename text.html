@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apache Spark: Uma Visão Geral</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon-spark.png" type="image/png">
+
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div id="demo-container">
+          <ul id="simple-menu">
+            <li>
+              <a href="#índice" class="current"><span>Índice</span></a>
+            </li>
+            <li>
+              <a href="#introducao"><span>Introdução</span></a>
+            </li>
+            <li>
+              <a href="#antes-spark"><span>Antes do Spark</span></a>
+            </li>
+            <li>
+              <a href="#funcionamento"><span>Funcionamento</span></a>
+            </li>
+            <li>
+              <a href="#bibliotecas"><span>Bibliotecas</span></a>
+            </li>
+            <li>
+              <a href="#uso"><span>Casos de uso</span></a>
+            </li>
+            <li>
+              <a href="#hoje"><span>Spark hoje</span></a>
+            </li>
+            <li>
+              <a href="#conclusao"><span>Conclusão</span></a>
+            </li>
+            <li>
+              <a href="#bibliografia"><span>Bibliografia</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <article>
+        <h1 ><img src="apache-spark.svg" alt="Logo Apache Spark" height="120" ></h1>
+
+        <section id="índice" style="padding-bottom: 30px;">
+          <h2>Índice</h2>
+          <ol>
+            <li style="margin-bottom: 10px;"><a class="textref" href="#introducao">Introdução</a></li>
+            <li style="margin-bottom: 10px;"><a class="textref" href="#antes-spark">Antes do Spark: um breve olhar sobre o Hadoop</a></li>
+            <li style="margin-bottom: 10px;"><a class="textref" href="#funcionamento">Como o Spark funciona</a></li>
+            <li style="margin-bottom: 10px;"><a class="textref" href="#bibliotecas">O que vem no pacote: bibliotecas do Spark</a></li>
+            <li style="margin-bottom: 10px;"><a class="textref" href="#uso">Casos de uso reais</a></li>
+            <li style="margin-bottom: 10px;"><a class="textref" href="#hoje">Por que usar Spark hoje em dia?</a></li>
+            <li style="margin-bottom: 10px;"><a class="textref" href="#conclusao">Conclusão</a></li>
+            <li style="margin-bottom: 10px;"><a class="textref" href="#bibliografia">Bibliografia</a></li>
+          </ol>
+        </section>
+
+        <section id="introducao" style="padding-bottom: 30px;">
+          <h2>Introdução</h2>
+            <li><strong>A explosão de dados e os desafios modernos</strong></li>
+            <p>
+              Com a digitalização crescente de empresas, serviços e interações humanas, vivemos uma verdadeira explosão na geração de dados. Desde redes sociais até sensores IoT e sistemas corporativos, a quantidade de informações geradas diariamente desafia as abordagens tradicionais de armazenamento e análise.
+            </p>
+            <p>
+              Ferramentas convencionais, como bancos de dados relacionais, não são mais suficientes para lidar com esse volume, variedade e velocidade. Surge, então, a necessidade de plataformas escaláveis, eficientes e capazes de explorar todo o potencial desses dados.
+            </p>
+          
+            <li><strong>De onde surgiu o Apache Spark?</strong></li>
+            <p>
+              O Apache Spark foi desenvolvido inicialmente no laboratório AMPLab da Universidade da Califórnia, em Berkeley, em 2009, como um projeto de pesquisa para superar as limitações do Hadoop MapReduce — principalmente em relação à velocidade de processamento.
+            </p>
+            <p>
+              Em 2010, foi disponibilizado como código aberto, e em 2014 tornou-se um projeto oficial da Apache Software Foundation. A partir daí, ganhou ampla adoção na indústria, impulsionado por sua capacidade de realizar análises rápidas e versáteis em ambientes distribuídos.
+            </p>
+          
+            <li><strong>O que é o Apache Spark?</strong></li>
+            <p>
+              O Apache Spark é um mecanismo de processamento de dados em larga escala, de código aberto, projetado para ser rápido, flexível e compatível com diversos ambientes. Ele oferece um modelo de programação unificada para processamento de dados em batch e em streaming, com APIs em várias linguagens (como Python, Java, Scala e R).
+            </p>
+            <p>
+              Seu diferencial está na capacidade de processar grandes volumes de dados de forma distribuída, utilizando a memória RAM para acelerar o desempenho — o que o torna ideal para aplicações de Big Data, aprendizado de máquina e análise em tempo real.
+            </p>
+        </section>
+
+        <section id="antes-spark" style="padding-bottom: 30px;">
+          <h2>Antes do Spark: um breve olhar sobre o Hadoop</h2>
+          <li><strong>Hadoop e MapReduce: a dupla pioneira</strong></li>
+          
+          <p>
+            Antes da ascensão do Apache Spark, o Hadoop dominava o cenário de processamento de dados em larga escala. Criado como um projeto de código aberto inspirado no artigo do Google sobre MapReduce, o Hadoop foi uma resposta inovadora à necessidade de processar grandes volumes de dados de forma distribuída e tolerante a falhas.
+          </p>
+          <p>
+            Seu núcleo era baseado em dois componentes principais: o HDFS (Hadoop Distributed File System) e o MapReduce. O HDFS permitia armazenar grandes conjuntos de dados de maneira distribuída, fragmentando arquivos entre diversos nós do cluster. Já o MapReduce fornecia o modelo de programação, onde o processamento era dividido em duas fases: Map, que aplicava funções aos dados, e Reduce, que agregava os resultados. Essa combinação foi revolucionária, possibilitando que empresas processassem petabytes de dados com hardware comum.
+          </p>
+          <li><strong>Limitações que abriram espaço para inovação</strong></li>
+          <p>
+            Apesar de seu pioneirismo, o modelo MapReduce do Hadoop apresentava limitações importantes. Em primeiro lugar, o processamento em disco entre cada fase causava latência significativa, tornando a execução de tarefas complexas — como machine learning, streaming ou consultas iterativas — bastante ineficiente. Além disso, a curva de aprendizado do modelo de programação era alta, exigindo conhecimento técnico avançado para implementar até mesmo tarefas relativamente simples.
+          </p>
+          <p>
+            Outro fator limitante era a falta de uma API unificada para diferentes tipos de processamento. O Hadoop precisava de projetos complementares como Hive, Pig e Mahout para cobrir casos de uso variados, o que dificultava a integração e aumentava a complexidade do ecossistema.
+          </p>
+          <p>
+            Esses obstáculos abriram caminho para novas abordagens mais rápidas, intuitivas e integradas — entre elas, o Apache Spark, que surgiu com a proposta de manter a escalabilidade do Hadoop, mas com desempenho superior e maior facilidade de uso.
+          </p>
+        </section>
+        
+
+        <section id="funcionamento" style="padding-bottom: 30px;">
+          <h2>Como o Spark funciona</h2>
+          <p>
+            Com a popularidade do Apache Spark crescendo, é essencial entender seus principais conceitos internos. Diferente dos modelos anteriores como o MapReduce, o Spark oferece uma estrutura mais flexível, mais rápida e mais amigável para o desenvolvimento. A seguir, exploramos os fundamentos que tornam isso possível.
+          </p>
+          
+          <li><strong>Conceito de processamento distribuído</strong></li>
+          
+          <p>
+            O Spark opera com base em processamento distribuído, ou seja, ele divide tarefas e dados em partes menores e as executa simultaneamente em vários nós (máquinas) de um cluster. Isso permite que grandes volumes de dados sejam processados em paralelo, reduzindo o tempo de execução.</p>
+          <p>
+            Imagine um arquivo de 100 GB sendo dividido em 10 partes de 10 GB, cada uma processada por uma máquina diferente ao mesmo tempo. Esse paralelismo é fundamental para lidar com dados em escala de Big Data, e o Spark gerencia essa distribuição automaticamente.</p>
+            
+          </ul>
+            <li><strong>RDDs, DataFrames e Datasets</strong></li>
+            </ul>
+          <p>O Spark oferece três principais estruturas de dados para trabalhar:</p>
+            <ul>
+              <li style="margin-bottom: 10px;">RDD (Resilient Distributed Dataset): é a estrutura mais básica. Um RDD representa um conjunto de dados imutável e distribuído, podendo ser processado com funções como map, filter, e reduce. Ele dá mais controle ao programador, mas exige mais código.</li>
+              <li style="margin-bottom: 10px;">DataFrame: é uma abstração de alto nível semelhante a uma tabela em bancos relacionais. Permite consultas com operações otimizadas, como se estivesse usando SQL. É muito mais eficiente que RDD em diversos cenários.</li>
+              <li style="margin-bottom: 10px;">Dataset: combina o melhor dos dois mundos: a performance e a otimização do DataFrame com a segurança de tipo e flexibilidade do RDD. É mais comum em linguagens fortemente tipadas como Scala e Java.</li>
+              </ul>
+          <p>Na prática, muitos projetos modernos utilizam principalmente DataFrames devido à simplicidade e desempenho.</p>
+            
+          </ul>
+            <li><strong>DAG: o cérebro por trás do Spark</strong></li>
+            </ul>
+          <p>Uma das grandes inovações do Spark é o uso de DAGs (Directed Acyclic Graphs). Toda vez que você encadeia operações no Spark (como .map(), .filter(), .groupBy()), ele não executa imediatamente. Em vez disso, ele constrói um grafo acíclico de operações – a DAG.</p>
+          <p>Esse grafo descreve o caminho que os dados devem percorrer, desde a origem até o resultado. Quando uma ação (como .collect() ou .save()) é chamada, o Spark analisa o DAG, otimiza a execução e então distribui as tarefas pelo cluster.</p>
+          <p>Esse modelo permite que o Spark seja mais inteligente na hora de planejar e executar tarefas, evitando etapas desnecessárias e reutilizando partes dos dados que já foram processadas.</p>
+          </ul>
+            <li><strong>Transformações e ações: o que de fato roda?</strong></li>
+            </ul>
+          <p>No Spark, existe uma distinção clara entre dois tipos de operações:</p>
+            <ul>
+              <li style="margin-bottom: 10px;">Transformações: como .map(), .filter(), .groupBy(). Elas não executam nada de imediato — apenas constroem a DAG de operações. São "preguiçosas" por natureza.</li>
+              <li style="margin-bottom: 10px;">Ações: como .collect(), .count(), .show(), .write(). São elas que disparam a execução real do código. Quando uma ação é chamada, o Spark pega a DAG construída, otimiza o plano e executa os passos necessários no cluster.</li>
+            </ul>
+          <p>Essa abordagem preguiçosa permite que o Spark evite cálculos desnecessários, aplique otimizações internas e reduza uso de recursos computacionais.</p>
+        </section>
+        
+
+
+        <section id="bibliotecas" style="padding-bottom: 30px;">
+          <h2>O que vem no pacote: bibliotecas do Spark</h2>
+          <p>
+            Além do seu poderoso motor de execução distribuída, o Apache Spark se destaca por ser uma plataforma unificada de processamento de dados. Isso significa que ele oferece módulos integrados para trabalhar com diferentes tipos de cargas de trabalho — consultas SQL, aprendizado de máquina, grafos e até mesmo streaming de dados em tempo real. Abaixo, exploramos os principais componentes que vêm junto com o Spark.
+          </p>
+          <li><strong>Spark SQL</strong></li>
+          <p>
+            O Spark SQL é a biblioteca usada para processar dados estruturados usando comandos SQL. Com ela, é possível executar queries sobre DataFrames ou até ler arquivos em formatos como JSON, Parquet, CSV e bancos de dados externos. Além de tornar o Spark acessível para quem vem do mundo do SQL tradicional, ele também otimiza a execução dos planos de consulta por meio do Catalyst Optimizer, um mecanismo interno de otimização.
+          </p>  
+          <li><strong>Mlib</strong></li>
+          <p>
+          O MLlib (Machine Learning Library) é a biblioteca de aprendizado de máquina do Spark. Ela fornece implementações distribuídas de algoritmos comuns de machine learning, como regressão linear, árvores de decisão, clustering (k-means), PCA, entre outros. Também traz ferramentas para pré-processamento de dados, validação cruzada e pipelines de modelagem.
+          </p>
+          <li><strong>GraphX</strong></li>
+          <p>
+          O GraphX é a API do Spark voltada para processamento de grafos e análise de relacionamentos entre entidades. Ele permite criar e manipular grafos diretamente no Spark, e oferece algoritmos prontos como PageRank, Connected Components e Triadic Closure. Por enquanto, GraphX está disponível apenas para Scala e Java.
+          Exemplo de conceito: Você pode representar redes sociais, como um grafo onde os vértices são pessoas e as arestas representam amizade. Com isso, é possível rodar o algoritmo de PageRank para encontrar os usuários mais influentes da rede.
+          </p>
+          <li><strong>Structured Streaming</strong></li>
+          <p>
+          O Structured Streaming permite trabalhar com fluxos de dados em tempo real usando a mesma API de DataFrames e SQL. Isso facilita muito o desenvolvimento de pipelines contínuos de ingestão, transformação e análise de dados que chegam constantemente (como logs, sensores, cliques, etc.).
+          </p>
+          <p>
+          Ele trata o streaming como uma tabela que está sendo atualizada continuamente. A cada novo dado, uma nova "mini query" é executada. O desenvolvedor escreve o código como se fosse batch, mas ele roda como streaming.
+          </p>
+        </section>
+
+        <section id="uso" style="padding-bottom: 30px;">
+          <h2>Casos de uso reais</h2>
+          <p>
+            O Apache Spark se tornou uma das tecnologias mais adotadas em Big Data justamente porque atende a uma grande variedade de domínios e setores. Desde o entretenimento até a ciência, passando por bancos, telecomunicações e redes sociais, seu modelo de processamento distribuído em memória oferece desempenho e flexibilidade ideais para lidar com os desafios modernos de dados.
+          </p>
+          <li><strong>De empresas de streaming a pesquisas científicas</strong></li>
+          <p>Empresas como Netflix, Spotify e Uber utilizam o Spark em seus pipelines de dados para análises em larga escala, personalização e monitoramento em tempo real. A Netflix, por exemplo, usa Spark para gerar recomendações personalizadas, analisando o comportamento de milhões de usuários. O Spotify usa o Spark para entender padrões de consumo musical e alimentar seus algoritmos de descoberta.
+          </p>
+          <p>No campo científico, pesquisadores do CERN (Organização Europeia para a Pesquisa Nuclear) utilizaram o Spark para processar dados experimentais do Grande Colisor de Hádrons. Por lidar com petabytes de dados, o Spark foi uma escolha estratégica para acelerar as análises e identificar eventos físicos raros que poderiam passar despercebidos em métodos tradicionais.
+          </p>
+          <li><strong>Exemplo de uso em IoT, finanças e redes sociais</strong></li>
+          <p>Internet das Coisas (IoT): Em ambientes industriais e urbanos, sensores IoT geram dados continuamente. O Spark, especialmente com Structured Streaming, permite processar esses fluxos em tempo real. Um exemplo é o monitoramento de turbinas eólicas, onde anomalias nos dados de vibração podem ser detectadas antes que ocorra uma falha mecânica.
+          </p>
+          <p>Finanças: Bancos e fintechs usam Spark para detectar fraudes em tempo real, fazer análises de risco de crédito e segmentação de clientes. A análise de transações bancárias em tempo real exige um motor rápido e escalável — características centrais do Spark.
+          </p>
+          <p>Redes sociais: Plataformas como Pinterest e Facebook aplicam o Spark para analisar interações entre usuários, detectar tendências, filtrar spam e até mesmo sugerir conexões. O uso de GraphX e MLlib permite descobrir comunidades, calcular influência (PageRank) e aplicar algoritmos de recomendação.
+          </p>
+        </section>
+
+        <section id="hoje" style="padding-bottom: 30px;">
+          <h2>Por que usar Spark hoje em dia?</h2>
+            <p>
+              Apesar de ter surgido em um cenário dominado pelo Hadoop, o Apache Spark continua extremamente relevante no ecossistema de Big Data atual. Sua popularidade se sustenta não apenas pela performance, mas pela sua adaptabilidade aos novos paradigmas tecnológicos — como a computação em nuvem, arquiteturas baseadas em containers e machine learning em larga escala.
+            </p>
+              <li><strong>Performance vs. complexidade</strong></li>
+                <p>O Spark ficou conhecido por oferecer grande desempenho com menos complexidade de desenvolvimento em comparação com ferramentas anteriores como o Hadoop MapReduce. Seu motor de execução em memória acelera significativamente o tempo de processamento, especialmente em tarefas iterativas como machine learning e algoritmos de grafos.</p>
+                <p>Além disso, o Spark oferece APIs de alto nível em Python, Scala, Java e R, o que facilita a adoção por equipes multidisciplinares. O modelo de programação baseado em transformações e ações é mais intuitivo, e a possibilidade de usar estruturas como DataFrames e Datasets ajuda a reduzir a complexidade do código e evitar erros comuns.</p>
+              
+          
+              <li><strong>Integrações com nuvem e containers</strong></li>
+                <p>Com a ascensão da computação em nuvem e da conteinerização com Docker e Kubernetes, o Spark também evoluiu. Hoje é possível:</p>
+                <ul>
+                  <li style="margin-bottom: 10px;">Rodar clusters Spark gerenciados em serviços como Databricks, Amazon EMR, Google Dataproc e Azure HDInsight.</li>
+                  <li style="margin-bottom: 10px;">Empacotar aplicações Spark em containers Docker e orquestrar com Kubernetes, o que facilita o deploy, o versionamento e a escalabilidade.</li>
+                  <li style="margin-bottom: 10px;">Usar integrações com armazenamento em nuvem (como S3, GCS ou Azure Blob Storage) de forma nativa.</li>
+                </ul>
+                <p></p>Isso torna o Spark uma tecnologia extremamente portável e escalável, ideal para arquiteturas modernas baseadas em microserviços e pipelines de dados automatizados.</p>
+              
+          
+              <li><strong>Comunidade ativa e futuro promissor</strong></li>
+                <p>Outro grande diferencial do Spark é sua comunidade ativa e vibrante. Desde seu início como projeto da Universidade de Berkeley até se tornar um dos projetos mais populares da Apache Foundation, o Spark continua recebendo contribuições constantes.</p>
+                <p>Exemplos disso incluem:</p>
+                <ul>
+                  <li style="margin-bottom: 10px;">Melhorias no Structured Streaming, para suportar mais cenários em tempo real.</li>
+                  <li style="margin-bottom: 10px;">Avanços na integração com o Pandas API (através do módulo pyspark.pandas).</li>
+                  <li style="margin-bottom: 10px;">Adoção crescente de Spark com Delta Lake para pipelines confiáveis e ACID.</li>
+                  <li style="margin-bottom: 10px;">Expansão de suporte para GPU e ambientes multi-cloud.</li>
+                </ul>
+                <p>
+                Além disso, a popularidade de plataformas como Databricks e o crescimento da disciplina de engenharia de dados ajudam a manter o Spark como uma tecnologia de referência.</p>
+
+        </section>
+
+        <section id="conclusao" style="padding-bottom: 30px;">
+          <h2>Conclusão</h2>
+            <li><strong>O que o Spark resolve bem</strong></li>
+            <p>
+              O Apache Spark se consolidou como uma das ferramentas mais robustas e versáteis para processamento distribuído de dados em larga escala. Ele resolve de forma eficiente:
+            </p>
+            <ul>
+              <li style="margin-bottom: 10px;">Execução paralela em clusters, com excelente performance para workloads batch, streaming e machine learning;</li>
+              <li style="margin-bottom: 10px;">Gerenciamento de falhas, com reexecução automática de tarefas e tolerância a nós caídos;</li>
+              <li style="margin-bottom: 10px;">API unificada, cobrindo desde consultas SQL até algoritmos de aprendizado de máquina e grafos;</li>
+              <li style="margin-bottom: 10px;">Integração com nuvens, contêineres e orquestradores, tornando-o ideal para arquiteturas modernas de dados.</li>
+            </ul>
+            <p>
+              A arquitetura baseada em memória, o uso de DAGs para otimização de tarefas e as bibliotecas especializadas (como MLlib, Structured Streaming e Spark SQL) fazem do Spark uma solução completa para o ciclo de vida de dados.
+            </p>
+          
+            <li><strong>Onde ele ainda precisa evoluir</strong></li>
+            <p>
+              Apesar de suas vantagens, o Spark não é isento de desafios:
+            </p>
+            <ul>
+              <li style="margin-bottom: 10px;">Curva de aprendizado: a complexidade de cluster, tuning de jobs e o modelo de execução podem ser difíceis para iniciantes;</li>
+              <li style="margin-bottom: 10px;">Latência em tempo real: embora Structured Streaming reduza esse problema, soluções como Flink ainda são superiores em aplicações com requisitos de latência subsegundo;</li>
+              <li style="margin-bottom: 10px;">Consumo de recursos: por ser orientado a execução em memória, o Spark pode demandar mais RAM e CPU que ferramentas otimizadas para casos específicos;</li>
+              <li style="margin-bottom: 10px;">Gerenciamento fino: o controle detalhado de recursos e balanceamento de carga ainda pode exigir bastante do time de infraestrutura.</li>
+            </ul>
+          
+            <li><strong>Considerações finais para quem quer aprender essa tecnologia</strong></li>
+            <p>
+              Para quem deseja entrar no universo do Apache Spark, o caminho mais produtivo é:
+            </p>
+            <ul>
+              <li style="margin-bottom: 10px;">Entender os conceitos fundamentais de processamento distribuído, como particionamento, paralelismo e falhas em clusters;</li>
+              <li style="margin-bottom: 10px;">Praticar com RDDs, DataFrames e Datasets, compreendendo o modelo de transformação e ação;</li>
+              <li style="margin-bottom: 10px;">Explorar projetos reais, como integração com bancos de dados, análise de logs ou streaming de sensores;</li>
+              <li style="margin-bottom: 10px;">Usar ambientes como Databricks ou Spark em containers locais (via Docker) para testar arquiteturas completas;</li>
+              <li style="margin-bottom: 10px;">E, por fim, acompanhar a evolução da comunidade, que constantemente adiciona melhorias e casos de uso emergentes.</li>
+            </ul>
+            <p>
+              Em um cenário de dados cada vez maiores e mais diversos, aprender Spark continua sendo uma aposta estratégica e de longo prazo para profissionais de dados, engenharia e ciência aplicada.
+            </p>
+          </section>
+          
+        </section>
+
+        <section id="bibliografia" style="padding-bottom: 30px;">
+          <h2>Bibliografia</h2>
+          <ol>
+            <li>
+              <p>ZAHARIA, M. et al. <strong>Spark: Cluster Computing with Working Sets</strong>. University of California, Berkeley, 2010.</p>
+            </li>
+            <li>
+              <p>Databricks. <strong>What is Apache Spark?</strong> Disponível em: <a href="https://www.databricks.com/glossary/what-is-apache-spark" target="_blank">https://www.databricks.com/glossary/what-is-apache-spark</a>. Acesso em: 07 abr. 2025.</p>
+            </li>
+            <li>
+              <p>Javatpoint. <strong>Apache Spark Tutorial</strong>. Disponível em: <a href="https://www.javatpoint.com/apache-spark" target="_blank">https://www.javatpoint.com/apache-spark</a>. Acesso em: 07 abr. 2025.</p>
+            </li>
+            <li>
+              <p>Analytics Vidhya. <strong>Introduction to Apache Spark for Beginners</strong>. Disponível em: <a href="https://www.analyticsvidhya.com/blog/2021/06/introduction-to-apache-spark/" target="_blank">https://www.analyticsvidhya.com/blog/2021/06/introduction-to-apache-spark/</a>. Acesso em: 07 abr. 2025.</p>
+            </li>
+            <li>
+              <p>IBM Cloud Learn Hub. <strong>What is Apache Spark?</strong> Disponível em: <a href="https://www.ibm.com/cloud/learn/apache-spark" target="_blank">https://www.ibm.com/cloud/learn/apache-spark</a>. Acesso em: 07 abr. 2025.</p>
+            </li>
+            <li>
+              <p>ZAHARIA, M.; DAMJI, J. S.; WENIG, B.; DAS, T. <strong>Learning Spark: Lightning-Fast Data Analytics</strong>. 2. ed. Sebastopol: O'Reilly Media, 2020.</p>
+            </li>
+            <li>
+              <p>Google Cloud. <strong>Getting Started with Apache Spark on Google Cloud</strong>. Disponível em: <a href="https://cloud.google.com/blog/products/data-analytics/getting-started-with-apache-spark-on-google-cloud" target="_blank">https://cloud.google.com/blog/products/data-analytics/getting-started-with-apache-spark-on-google-cloud</a>. Acesso em: 07 abr. 2025.</p>
+            </li>
+            <li>
+              <p>Towards Data Science (Medium). <strong>Apache Spark in 2023 — What’s New and What’s Next?</strong> Disponível em: <a href="https://towardsdatascience.com/apache-spark-in-2023-whats-new-and-whats-next-1a6be4897461" target="_blank">https://towardsdatascience.com/apache-spark-in-2023-whats-new-and-whats-next-1a6be4897461</a>. Acesso em: 07 abr. 2025.</p>
+            </li>
+            <li>
+              <p>AWS. <strong>Apache Spark on Amazon EMR</strong>. Disponível em: <a href="https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-spark.html" target="_blank">https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-spark.html</a>. Acesso em: 07 abr. 2025.</p>
+            </li>
+            <li>
+              <p>Medium. <strong>High Performance Spark: A Comprehensive Review</strong>. Disponível em: <a href="https://medium.com/devreads/high-performance-spark-a-comprehensive-review-c2e02648dadc" target="_blank">https://medium.com/devreads/high-performance-spark-a-comprehensive-review-c2e02648dadc</a>. Acesso em: 07 abr. 2025.</p>
+            </li>
+            <li>
+              <p>ZAHARIA, M. et al. <strong>Apache Spark: A Unified Engine for Big Data Processing</strong>. ACM, 2016. Disponível em: <a href="https://dl.acm.org/doi/fullHtml/10.1145/2934664" target="_blank">https://dl.acm.org/doi/fullHtml/10.1145/2934664</a>. Acesso em: 07 abr. 2025.</p>
+            </li>
+            <li>
+              <p>Apache Software Foundation. <strong>Quick Start — Apache Spark Documentation</strong>. Disponível em: <a href="https://spark.apache.org/docs/latest/quick-start.html" target="_blank">https://spark.apache.org/docs/latest/quick-start.html</a>. Acesso em: 07 abr. 2025.</p>
+            </li>
+            <li>
+              <p>Amazon Web Services. <strong>O que é o Apache Spark?</strong> Disponível em: <a href="https://aws.amazon.com/pt/what-is/apache-spark/" target="_blank">https://aws.amazon.com/pt/what-is/apache-spark/</a>. Acesso em: 07 abr. 2025.</p>
+            </li>
+            <li>
+              <p>ASSUNÇÃO, M. D. et al. <strong>Apache Spark</strong>. Encyclopedia of Big Data Technologies, 2018.</p>
+            </li>
+            <li>
+              <p>JONNALAGADDA, V. S.; SRIKANTH, P.; THUMATI, K.; NALLAMALA, S. <strong>A Review Study of Apache Spark in Big Data Processing</strong>. International Journal of Computer Science Trends and Technology (IJCST), 2016.</p>
+            </li>
+            <li>
+              <p>IBTISUM, S.; BAZGIR, E.; RAHMAN, S. M. A.; HOSSAIN, S. M. S. <strong>A comparative analysis of big data processing paradigms: MapReduce vs. Apache Spark</strong>. World Journal of Advanced Research and Reviews, 2023.</p>
+            </li>
+          </ol>
+        </section>
+      </article>
+    </main>
+    <footer>
+      Trabalho de Redes 1, UFRJ. Grupo 14: Arthur Monteiro e Carolina Falcão
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
